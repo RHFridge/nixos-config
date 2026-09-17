@@ -33,7 +33,7 @@ hl.config({
     kb_layout = "gb",
   },
   misc = {
-    vrr = 1,
+    vrr = 2,
   },
 })
 
