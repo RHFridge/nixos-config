@@ -9,6 +9,7 @@
     programs.steam = {
       enable = true;
       gamescopeSession.enable = true;
+      extraCompatPackages = [pkgs-unstable.proton-ge-bin];
     };
     hardware.steam-hardware.enable = true;
 
