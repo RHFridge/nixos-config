@@ -9,5 +9,6 @@
     ./flatpak
     ./syncthing
     ./distrobox
+    ./podman
   ];
 }

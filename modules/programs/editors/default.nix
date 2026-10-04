@@ -7,5 +7,6 @@
     ./vscode
     ./helix
     ./lf
+    ./dbeaver
   ];
 }
