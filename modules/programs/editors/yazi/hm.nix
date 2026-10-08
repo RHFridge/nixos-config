@@ -26,7 +26,7 @@
         }
         {
           on = ["e"];
-          run = "shell 'hx .' --block";
+          run = "shell 'hx %h' --block";
           desc = "Open Helix in this directory";
         }
       ];

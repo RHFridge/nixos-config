@@ -4,8 +4,6 @@
   ...
 }: {
   home-manager.users.${config.vars.user} = lib.mkIf config.modules.programs.editors.lazygit.enable {
-    stylix.targets.lazygit.enable = true;
-
     programs.lazygit = {
       enable = true;
       # `lg` = lazygit that cd's you into whatever repo/worktree you leave it in

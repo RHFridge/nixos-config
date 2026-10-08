@@ -4,8 +4,6 @@
   ...
 }: {
   home-manager.users.${config.vars.user} = lib.mkIf config.modules.programs.terminal.zellij.enable {
-    stylix.targets.zellij.enable = true;
-
     programs.zellij = {
       enable = true;
       # Don't hijack every terminal; run `zellij` or `ide` when you want it.

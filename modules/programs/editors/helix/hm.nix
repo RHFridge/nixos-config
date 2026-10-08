@@ -29,9 +29,6 @@
   ];
 in {
   home-manager.users.${config.vars.user} = lib.mkIf config.modules.programs.editors.helix.enable {
-    # Silk-dark colours from Stylix, same as the rest of the desktop.
-    stylix.targets.helix.enable = true;
-
     programs.helix = {
       enable = true;
       defaultEditor = true;
