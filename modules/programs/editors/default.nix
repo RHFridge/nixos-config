@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   options.modules.programs.editors = {
     enable = lib.mkEnableOption "Enable Editor Programs";
   };
@@ -9,7 +9,6 @@
     ./lf
     ./yazi
     ./lazygit
-    ./ide
     ./dbeaver
   ];
 }
