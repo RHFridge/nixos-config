@@ -13,7 +13,9 @@ local term     = "alacritty"
 -- Autostart (exec-once)
 -- ===========================================================================
 hl.on("hyprland.start", function()
-  hl.exec_cmd("/nix/store/hb0kkjdwmzfbrlslvd7c59k8y3lq0w0w-dbus-1.16.2/bin/dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target")
+  -- settings.nix fills in the dbus store path at build time, so this never
+  -- points at a garbage-collected path after dbus updates.
+  hl.exec_cmd("@dbus@/bin/dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target")
   hl.exec_cmd("noctalia")
 end)
 
@@ -70,6 +72,14 @@ hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(term))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(files))
+-- terminal file manager
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(term .. " -e yazi"))
+-- "code": fuzzy-pick a recent folder (zoxide) and open it in the `ide` workspace
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(term .. [[ -e bash -c 'dir="$(zoxide query -i)" && exec ide "$dir"']]))
+-- lazygit for the most recently used folder
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(term .. [[ -e bash -c 'cd "$(zoxide query)" && exec lazygit']]))
+-- system monitor
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(term .. " -e btop"))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("noctalia msg notification-invoke-latest"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
@@ -116,10 +126,12 @@ hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd("hyprctl dispatch workspaceop
 
 hl.bind(mainMod .. " + U", hl.dsp.layout("togglesplit"))
 
-hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.resize({ x = -100, y = 0 }))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.resize({ x = 100, y = 0 }))
-hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -100 }))
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 100 }))
+-- resize lives on SUPER+CTRL: SUPER+SHIFT+L was bound to both "lock" and
+-- "resize right", so locking also nudged the focused window.
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.resize({ x = -100, y = 0 }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.window.resize({ x = 100, y = 0 }))
+hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.resize({ x = 0, y = -100 }))
+hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.resize({ x = 0, y = 100 }))
 
 hl.bind(mainMod .. " + I", hl.dsp.layout("swapsplit"))
 

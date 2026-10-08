@@ -7,6 +7,9 @@
     ./vscode
     ./helix
     ./lf
+    ./yazi
+    ./lazygit
+    ./ide
     ./dbeaver
   ];
 }

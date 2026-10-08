@@ -15,7 +15,7 @@
       pkgs.noctalia-greeter
     ];
 
-    programs.noctalia-greeter = {
+    services.displayManager.noctalia-greeter = {
       enable = true;
       settings = {
         keyboard.layout = "gb";

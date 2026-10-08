@@ -2,7 +2,7 @@
   options.modules.programs.editors.lf = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = config.modules.programs.editors.enable;
+      default = false; # superseded by yazi
       description = "Enable lf.";
     };
   };

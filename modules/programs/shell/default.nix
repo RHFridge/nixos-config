@@ -5,5 +5,6 @@
 
   imports = [
     ./bash
+    ./tools
   ];
 }
