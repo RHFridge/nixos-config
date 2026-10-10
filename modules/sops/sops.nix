@@ -13,7 +13,7 @@
   ];
 
   sops = {
-    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFile = "/home/${config.vars.user}/.config/sops/age/secrets.yaml";
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/${config.vars.user}/.config/sops/age/keys.txt";
 
