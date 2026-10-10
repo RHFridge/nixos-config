@@ -216,3 +216,8 @@ show_label = false
 
 [widget.wallpaper]
 enabled = false
+
+[widget.workspaces]
+change_color_on_hover = false
+font_family = "Inter ExtraBold"
+occupied_color = "outline"
