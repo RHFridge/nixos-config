@@ -31,6 +31,14 @@
         owner = config.users.users.${config.vars.user}.name;
         group = config.users.users.${config.vars.user}.group;
       };
-    };
+      "git/personal/name" = {};
+      "git/personal/email" = {};
+      "git/personal/github-user" = {};
+      "git/personal/signing-key" = {};
+      "git/alias/name" = {};
+      "git/alias/email" = {};
+      "git/alias/github-user" = {};
+      "git/alias/signing-key" = {};
+     };
   };
 }

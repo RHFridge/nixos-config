@@ -72,6 +72,8 @@
 
       editors.enable = true;
 
+      git.enable = true;
+
       filemanager.enable = true;
 
       games.enable = true;

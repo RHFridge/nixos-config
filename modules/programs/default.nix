@@ -5,6 +5,7 @@
     ./editors
     ./file_manager
     ./games
+    ./git
     ./keepassxc
     ./multimedia
     ./tealdeer
