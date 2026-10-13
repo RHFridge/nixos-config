@@ -41,6 +41,7 @@
 
   # Set the system state version
   system.stateVersion = "25.11"; # Make sure this matches your installed version of NixOS
+  
 
   modules = {
     system.hm.enable = true;
@@ -52,6 +53,7 @@
       printing.enable = true;
       scanner.enable = true;
       rgb.enable = true;
+      network.enable = true;
     };
 
     desktop = {

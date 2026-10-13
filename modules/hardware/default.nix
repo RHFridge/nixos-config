@@ -10,5 +10,6 @@
     ./scanner
     ./thunderbolt
     ./rgb
+    ./network
   ];
 }
