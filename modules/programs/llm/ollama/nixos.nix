@@ -10,5 +10,7 @@
         OLLAMA_KEEP_ALIVE = "2m";
       };
     };
+
+    systemd.services.ollama.wantedBy = lib.mkForce [ ];
   };
 }
