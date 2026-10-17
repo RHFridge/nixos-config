@@ -34,7 +34,7 @@
   users.users.${config.vars.user} = {
     isNormalUser = true;
     description = config.vars.user;
-    initialPassword = "5600";
+    initialPassword = "1234";
     hashedPasswordFile = config.sops.secrets.x280pass.path;
     extraGroups = ["networkmanager" "wheel"];
   };
