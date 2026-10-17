@@ -42,6 +42,21 @@
   # Set the system state version
   system.stateVersion = "25.11"; # Make sure this matches your installed version of NixOS
   
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16 * 1024;
+  }];
+
+  nix.settings = {
+    max-jobs = 4;
+    cores = 6;
+  };
+  
 
   modules = {
     system.hm.enable = true;
@@ -89,6 +104,8 @@
       terminal.enable = true;
 
       vpn.enable = true;
+      
+      llm.enable = true;
     };
 
     services.enable = true;

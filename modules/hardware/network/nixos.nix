@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   config = lib.mkIf config.modules.hardware.network.enable {
     hardware.enableRedistributableFirmware = true;

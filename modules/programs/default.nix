@@ -12,5 +12,6 @@
     ./terminal
     ./vpn
     ./shell
+    ./llm
   ];
 }
