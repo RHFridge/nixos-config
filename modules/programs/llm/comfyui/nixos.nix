@@ -12,7 +12,7 @@
         ExecStart = "${(import pkgs-unstable.path {
           system = pkgs.stdenv.hostPlatform.system;
           config = { allowUnfree = true; cudaSupport = true; };
-        }).comfyui}/bin/comfyui --base-directory /mnt/sata/comfyui --listen 127.0.0.1 --port 8188";
+        }).comfyui}/bin/comfyui --base-directory /mnt/nvme/comfyui --listen 127.0.0.1 --port 8188";
         Restart = "on-failure";
       };
     };
