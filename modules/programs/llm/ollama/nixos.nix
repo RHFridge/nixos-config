@@ -1,17 +1,27 @@
-{ lib, config, pkgs , ... }: {
+{ lib, config, pkgs, ... }: {
   config = lib.mkIf config.modules.programs.llm.ollama.enable {
-    services.ollama = {
-      enable = true;
-      package = pkgs.ollama-cuda;
-      environmentVariables = {
-        OLLAMA_FLASH_ATTENTION = "1";
-        OLLAMA_KV_CACHE_TYPE = "q8_0";
-        OLLAMA_CONTEXT_LENGTH = "32768";
-        OLLAMA_KEEP_ALIVE = "2m";
-      };
-    };
+    services.ollama = lib.mkMerge [
+      {
+        enable = true;
+        package = pkgs.ollama-cuda;
+        environmentVariables = {
+          OLLAMA_FLASH_ATTENTION = "1";
+          OLLAMA_KV_CACHE_TYPE = "q8_0";
+          OLLAMA_CONTEXT_LENGTH = "65536";
+          OLLAMA_KEEP_ALIVE = "2m";
+        };
+      }
+      (lib.mkIf (config.vars.host == "qpc") {
+        user = "ollama";
+        group = "ollama";
+        models = "/mnt/nvme/ollama/models";
+      })
+    ];
+
+    systemd.tmpfiles.rules = lib.mkIf (config.vars.host == "qpc") [
+      "d /mnt/nvme/ollama/models 0700 ollama ollama -"
+    ];
 
     systemd.services.ollama.wantedBy = lib.mkForce [ ];
-    services.ollama.modelsDir = lib.mkIf (config.vars.host == "qpc") "/mnt/nvme/ollama/models";
   };
 }

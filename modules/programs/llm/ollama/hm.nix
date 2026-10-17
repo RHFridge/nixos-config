@@ -4,8 +4,12 @@
 
     xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
       "$schema" = "https://opencode.ai/config.json";
+      permission = {
+        edit = "ask";
+        bash = "ask";
+        webfetch = "ask";
+      };
       model = "ollama/qwen3.8:27b";
-      # Same model on purpose: a different one forces Ollama to swap models in VRAM
       small_model = "ollama/qwen3.8:27b";
       provider.ollama = {
         npm = "@ai-sdk/openai-compatible";
