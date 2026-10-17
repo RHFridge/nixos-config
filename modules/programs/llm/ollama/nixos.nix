@@ -12,5 +12,6 @@
     };
 
     systemd.services.ollama.wantedBy = lib.mkForce [ ];
+    services.ollama.models = lib.mkIf (config.vars.host == "qpc") "/mnt/nvme/ollama/models";
   };
 }
