@@ -93,6 +93,8 @@
         enable = true;
         wireguard.enable = false;
       };
+
+      llm.ollama.enable = true;
     };
 
     services.enable = true;
