@@ -9,7 +9,7 @@
       enable = true;
       package = (
         pkgs.obs-studio.override {
-          cudaSupport = true;
+          cudaSupport = config.modules.hardware.gpu.nvidia.enable;
         }
       );
       plugins = [
