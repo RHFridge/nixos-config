@@ -6,5 +6,6 @@
   imports = [
     ./bash
     ./tools
+    ./nautilus_scripts
   ];
 }
