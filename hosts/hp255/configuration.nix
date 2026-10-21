@@ -93,6 +93,8 @@
         enable = true;
         wireguard.enable = false;
       };
+
+      llm.claude-code.enable = true;
     };
 
     services.enable = true;

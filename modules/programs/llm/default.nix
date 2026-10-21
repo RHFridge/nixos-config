@@ -6,5 +6,6 @@
   imports = [
     ./ollama
     ./comfyui
+    ./claude-code
   ];
 }
