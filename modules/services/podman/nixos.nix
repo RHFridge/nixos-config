@@ -9,6 +9,8 @@
       enable = true;
       dockerCompat = true;
     };
+    
+    hardware.nvidia-container-toolkit.enable = config.modules.hardware.gpu.nvidia.enable;
 
     environment.systemPackages = with pkgs; [
       podman-compose
