@@ -14,14 +14,37 @@
   };
 
   comfyPkg = pkgsCuda.comfyui;
+  py = comfyPkg.python.pkgs;
+
+  # SageAttention 1: pure Triton, no CUDA compile at build time
+  sageattention = py.buildPythonPackage rec {
+    pname = "sageattention";
+    version = "1.0.6";
+    pyproject = true;
+
+    src = py.fetchPypi {
+      inherit pname version;
+      hash = "sha256-sDmKWHciLuGrrszSfRApMJyLV5lHlKEcEnjgv9F2USw=";
+    };
+
+    build-system = with py; [setuptools wheel];
+    pypaBuildFlags = ["--skip-dependency-check"];
+
+    dependencies = with py; [torch triton];
+
+    doCheck = false;
+    pythonImportsCheck = [];
+  };
 
   # ComfyUI's own Python env plus extra deps for custom nodes
   comfyEnv = comfyPkg.pythonEnv.override (old: {
     extraLibs =
       old.extraLibs
-      ++ (with comfyPkg.python.pkgs; [
+      ++ (with py; [
         (opencv4.override {enableCuda = false;}) # Lucy-Edit-ComfyUI
-      ]);
+        triton
+      ])
+      ++ [sageattention];
   });
 
   comfyuiWithExtras = pkgs.writeShellApplication {
@@ -52,7 +75,7 @@ in {
       serviceConfig = {
         User = config.vars.user;
         Group = "users";
-        ExecStart = "${comfyuiWithExtras}/bin/comfyui --base-directory /mnt/nvme/comfyui --listen 0.0.0.0 --port 8188 --disable-smart-memory";
+        ExecStart = "${comfyuiWithExtras}/bin/comfyui --base-directory /mnt/nvme/comfyui --listen 0.0.0.0 --port 8188 --disable-smart-memory --use-sage-attention";
         Restart = "on-failure";
       };
     };
