@@ -99,6 +99,16 @@
 
       multimedia.enable = true;
 
+      ssh = {
+        enable = true;
+        server = {
+          enable = true;
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHCNbgkn992QMb/n/64QDtkdzjkHAoPJxvQCQnDtcDK rhf@hp255"
+          ];
+        };
+      };
+
       tealdeer.enable = true;
 
       terminal.enable = true;

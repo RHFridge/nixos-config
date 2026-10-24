@@ -85,6 +85,8 @@
         kdenlive.enable = false;
       };
 
+      ssh.enable = true;
+
       tealdeer.enable = true;
 
       terminal.enable = true;

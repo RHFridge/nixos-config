@@ -8,6 +8,7 @@
     ./git
     ./keepassxc
     ./multimedia
+    ./ssh
     ./tealdeer
     ./terminal
     ./vpn
